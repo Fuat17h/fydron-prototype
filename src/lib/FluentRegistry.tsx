@@ -3,11 +3,13 @@
 import React from "react";
 import {
   FluentProvider,
-  webLightTheme,
+  //webLightTheme,
   SSRProvider,
   RendererProvider,
   createDOMRenderer,
 } from "@fluentui/react-components";
+
+import { fydronTheme } from "./fydronTheme";
 
 // For Next.js App Router, we no longer need a custom insertion factory in most cases.
 // The library now handles style insertion better out of the box with SSRProvider + RendererProvider.
@@ -18,7 +20,7 @@ export function FluentRegistry({ children }: { children: React.ReactNode }) {
   return (
     <RendererProvider renderer={renderer}>
       <SSRProvider>
-        <FluentProvider theme={webLightTheme}>{children}</FluentProvider>
+        <FluentProvider theme={fydronTheme}>{children}</FluentProvider>
       </SSRProvider>
     </RendererProvider>
   );
