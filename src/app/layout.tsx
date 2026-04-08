@@ -1,4 +1,4 @@
-import { FluentRegistry } from "@/lib/FluentRegistry";
+import { FluentRegistry } from "@/providers/FluentRegistry";
 import "./globals.css";
 
 import { Inter } from "next/font/google";

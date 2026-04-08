@@ -1,18 +1,42 @@
 "use client";
-import { AuthLayout } from "@/components/layouts/AuthLayout";
-import { Button, Title1 } from "@fluentui/react-components";
-import { CreatePasswordForm } from "./(auth)/CreatePasswordForm";
+// import DashboardLayout from "./(dashboard)/layout";
+// import DashboardPage from "./(dashboard)/dashboard/page";
+import { useRouter } from "next/navigation";
+import { isLoggedIn } from "@/lib/auth";
+import { useEffect, useState } from "react";
 
 export default function Home() {
-  return (
-    <main>
-      {/* <Title1>Welcome to Fydron</Title1>
-      <br />
-      <Button appearance="primary">Fluent UI is working!</Button> */}
+  const router = useRouter();
 
-      <AuthLayout>
-        <CreatePasswordForm />
-      </AuthLayout>
+  const [loading] = useState(true);
+
+  useEffect(() => {
+    if (isLoggedIn()) {
+      router.push("/dashboard");
+    } else {
+      router.push("/login");
+    }
+  }, [router]);
+
+  return (
+    <main
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "100vh",
+        flexDirection: "column",
+      }}
+    >
+      {loading && <p>Redirecting...</p>}
     </main>
   );
+
+  // return (
+  //   <main>
+  //     <DashboardLayout>
+  //       <DashboardPage />
+  //     </DashboardLayout>
+  //   </main>
+  // );
 }
